@@ -1,3 +1,4 @@
+import 'package:agro_market/views/buyers/auth/register_screen.dart';
 import 'package:agro_market/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AgroMarket',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 119, 118, 119)),
         useMaterial3: true,
         //fontFamily: 'Brand-Bold',
       ),
-      home: MainScreen(),
+      //home: MainScreen(),
+      home: RegisterScreen(),
     );
   }
 }
