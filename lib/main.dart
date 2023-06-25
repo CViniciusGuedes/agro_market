@@ -1,3 +1,4 @@
+import 'package:agro_market/views/buyers/auth/login_screen.dart';
 import 'package:agro_market/views/buyers/auth/register_screen.dart';
 import 'package:agro_market/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         //fontFamily: 'Brand-Bold',
       ),
-      //home: MainScreen(),
       home: RegisterScreen(),
     );
   }

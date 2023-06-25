@@ -1,7 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:agro_market/controllers/auth_controller.dart';
 import 'package:agro_market/utils/show_snackBar.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -12,16 +16,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthController _authController = AuthController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   late String email;
-
   late String fullName;
-
   late String phoneNumber;
-
   late String password;
 
   bool _isLoading = false;
+
+  Uint8List? _image;
 
   _signUpUser() async {
     setState(() {
@@ -34,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         fullName,
         phoneNumber,
         password,
+        _image,
       )
           .whenComplete(() {
         setState(() {
@@ -50,6 +53,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
+  selectGalleryImage() async {
+    Uint8List im = await _authController.pickProfileImage(ImageSource.gallery);
+
+    setState(() {
+      _image = im;
+    });
+  }
+
+  selectCameraImage() async {
+    Uint8List im = await _authController.pickProfileImage(ImageSource.camera);
+
+    setState(() {
+      _image = im;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +83,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   'Criar Uma Conta Cliente',
                   style: TextStyle(fontSize: 20),
                 ),
-                CircleAvatar(
-                  radius: 64,
-                  backgroundColor: Colors.grey,
+                Stack(
+                  children: [
+                    _image != null
+                        ? CircleAvatar(
+                            radius: 64,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: MemoryImage(_image!),
+                          )
+                        : CircleAvatar(
+                            radius: 64,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(
+                              'https://digimedia.web.ua.pt/wp-content/uploads/2017/05/default-user-image.png',
+                            ),
+                          ),
+                    Positioned(
+                      right: 0,
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: IconButton(
+                        onPressed: () {
+                          selectGalleryImage();
+                        },
+                        icon: Icon(
+                          CupertinoIcons.photo_camera,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
