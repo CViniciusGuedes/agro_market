@@ -7,12 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatefulWidget {
+class BuyerRegisterScreen extends StatefulWidget {
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<BuyerRegisterScreen> createState() => _BuyerRegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _BuyerRegisterScreenState extends State<BuyerRegisterScreen> {
   final AuthController _authController = AuthController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

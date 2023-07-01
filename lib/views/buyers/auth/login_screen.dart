@@ -23,11 +23,19 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     if (_formkey.currentState!.validate()) {
-      await _authController.loginUsers(email, password);
-      return Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-        return MainScreen();
-      }));
+      String res = await _authController.loginUsers(email, password);
+      if (res == 'success') {
+        return Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return MainScreen();
+            },
+          ),
+        );
+      } else {
+        showSnack(context, res);
+      }
     } else {
       setState(() {
         _isLoading = false;

@@ -67,6 +67,27 @@ class AuthController {
     return res;
   }
 
+/*
+  loginUsers(String email, String password) async {
+    String res = 'Algo deu Errado';
+
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+
+        res = 'success';
+      } else {
+        res = 'Os campos não devem estar vazios';
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+}
+*/
+
   loginUsers(String email, String password) async {
     String res = 'Algo deu Errado';
 
