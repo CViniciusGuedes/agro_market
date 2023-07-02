@@ -1,5 +1,7 @@
+import 'package:agro_market/provider/product_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GeneralScreen extends StatefulWidget {
   @override
@@ -23,23 +25,6 @@ class _GeneralScreenState extends State<GeneralScreen> {
     });
   }
 
-  /*DateTime? selectedDate;
-
-  void showDatePickerDialog() async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null && pickedDate != selectedDate) {
-      setState(() {
-        selectedDate = pickedDate;
-      });
-    }
-  }*/
-
   @override
   void initState() {
     _getCategories();
@@ -48,6 +33,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ProductProvider _productProvider =
+        Provider.of<ProductProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -55,18 +42,28 @@ class _GeneralScreenState extends State<GeneralScreen> {
           child: Column(
             children: [
               TextFormField(
+                onChanged: (value) {
+                  _productProvider.getFormData(productName: value);
+                },
                 decoration: InputDecoration(
                   labelText: 'Nome do Produto',
                 ),
               ),
               SizedBox(height: 30),
               TextFormField(
+                onChanged: (value) {
+                  _productProvider.getFormData(
+                      productPrice: double.parse(value));
+                },
                 decoration: InputDecoration(
                   labelText: 'Preço',
                 ),
               ),
               SizedBox(height: 30),
               TextFormField(
+                onChanged: (value) {
+                  _productProvider.getFormData(quantity: int.parse(value));
+                },
                 decoration: InputDecoration(
                   labelText: 'Quantidade',
                 ),
@@ -77,10 +74,18 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 items: _categoryList.map<DropdownMenuItem<String>>((e) {
                   return DropdownMenuItem(value: e, child: Text(e));
                 }).toList(),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                    _productProvider.getFormData(category: value);
+                  });
+                },
               ),
               SizedBox(height: 30),
               TextFormField(
+                onChanged: (value) {
+                  _productProvider.getFormData(description: value);
+                },
+                minLines: 3,
                 maxLines: 10,
                 maxLength: 800,
                 decoration: InputDecoration(
@@ -90,22 +95,6 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   ),
                 ),
               ),
-              /*Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: showDatePickerDialog,
-                  child: Text('Selecionar Data de Validade'),
-                ),
-              ),
-              selectedDate != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Data de Validade: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )
-                  : Container(),*/
             ],
           ),
         ),
