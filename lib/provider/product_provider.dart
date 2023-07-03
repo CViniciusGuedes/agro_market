@@ -37,5 +37,12 @@ class ProductProvider with ChangeNotifier {
     if (shippingCharge != null) {
       productData['shippingCharge'] = shippingCharge;
     }
+
+    notifyListeners();
+  }
+
+  clearData() {
+    productData.clear();
+    notifyListeners();
   }
 }

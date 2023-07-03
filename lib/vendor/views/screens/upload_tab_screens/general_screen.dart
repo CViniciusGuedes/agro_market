@@ -8,18 +8,14 @@ class GeneralScreen extends StatefulWidget {
   State<GeneralScreen> createState() => _GeneralScreenState();
 }
 
-class _GeneralScreenState extends State<GeneralScreen>
-    with AutomaticKeepAliveClientMixin {
+class _GeneralScreenState extends State<GeneralScreen> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final List<String> _categoryList = [];
 
   _getCategories() {
-    return _firestore
-        .collection('categories')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
+    return _firestore.collection('categories').get().then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         setState(() {
           _categoryList.add(doc['categoryName']);
@@ -37,8 +33,7 @@ class _GeneralScreenState extends State<GeneralScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final ProductProvider _productProvider =
-        Provider.of<ProductProvider>(context);
+    final ProductProvider _productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -46,6 +41,13 @@ class _GeneralScreenState extends State<GeneralScreen>
           child: Column(
             children: [
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Digite O Nome Do Produto';
+                  } else {
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(productName: value);
                 },
@@ -55,9 +57,15 @@ class _GeneralScreenState extends State<GeneralScreen>
               ),
               SizedBox(height: 30),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Digite O Preço Do Produto';
+                  } else {
+                    return null;
+                  }
+                },
                 onChanged: (value) {
-                  _productProvider.getFormData(
-                      productPrice: double.parse(value));
+                  _productProvider.getFormData(productPrice: double.parse(value));
                 },
                 decoration: InputDecoration(
                   labelText: 'Preço',
@@ -65,6 +73,13 @@ class _GeneralScreenState extends State<GeneralScreen>
               ),
               SizedBox(height: 30),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Digite Uma Quantidade Para O Produto';
+                  } else {
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(quantity: int.parse(value));
                 },
@@ -83,9 +98,22 @@ class _GeneralScreenState extends State<GeneralScreen>
                     _productProvider.getFormData(category: value);
                   });
                 },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Selecione uma Categoria';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 30),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Digite Uma Descrição Para O Produto';
+                  } else {
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(description: value);
                 },

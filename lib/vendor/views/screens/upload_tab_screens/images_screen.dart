@@ -14,8 +14,7 @@ class ImagesScreen extends StatefulWidget {
   State<ImagesScreen> createState() => _ImagesScreenState();
 }
 
-class _ImagesScreenState extends State<ImagesScreen>
-    with AutomaticKeepAliveClientMixin {
+class _ImagesScreenState extends State<ImagesScreen> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   final ImagePicker picker = ImagePicker();
@@ -38,8 +37,7 @@ class _ImagesScreenState extends State<ImagesScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final ProductProvider _productProvider =
-        Provider.of<ProductProvider>(context);
+    final ProductProvider _productProvider = Provider.of<ProductProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -47,8 +45,7 @@ class _ImagesScreenState extends State<ImagesScreen>
           GridView.builder(
             shrinkWrap: true,
             itemCount: _image.length + 1,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, mainAxisSpacing: 8, childAspectRatio: 3 / 3),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 8, childAspectRatio: 3 / 3),
             itemBuilder: ((context, index) {
               return index == 0
                   ? Center(
@@ -76,18 +73,19 @@ class _ImagesScreenState extends State<ImagesScreen>
             onPressed: () async {
               EasyLoading.show(status: 'Salvando Imagens');
               for (var img in _image) {
-                Reference ref =
-                    _storage.ref().child('productImage').child(Uuid().v4());
+                Reference ref = _storage.ref().child('productImage').child(Uuid().v4());
                 await ref.putFile(img).whenComplete(() async {
                   await ref.getDownloadURL().then((value) {
                     setState(() {
                       _imageUrlList.add(value);
-                      _productProvider.getFormData(imageUrlList: _imageUrlList);
-                      EasyLoading.dismiss();
                     });
                   });
                 });
               }
+              setState(() {
+                _productProvider.getFormData(imageUrlList: _imageUrlList);
+                EasyLoading.dismiss();
+              });
             },
             child: Text('Enviar Imagem'),
           ),
