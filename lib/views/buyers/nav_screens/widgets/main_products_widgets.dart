@@ -2,15 +2,10 @@ import 'package:agro_market/views/buyers/product_detail/product_detail_screen.da
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomeProductWidget extends StatelessWidget {
-  final String categoryName;
-
-  const HomeProductWidget({super.key, required this.categoryName});
-
+class MainProductsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _productStream =
-        FirebaseFirestore.instance.collection('products').where('category', isEqualTo: categoryName).snapshots();
+    final Stream<QuerySnapshot> _productStream = FirebaseFirestore.instance.collection('products').snapshots();
     return StreamBuilder<QuerySnapshot>(
       stream: _productStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

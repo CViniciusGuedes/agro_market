@@ -1,4 +1,5 @@
 import 'package:agro_market/views/buyers/nav_screens/widgets/home_products.dart';
+import 'package:agro_market/views/buyers/nav_screens/widgets/main_products_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,11 @@ class _CategoryTextState extends State<CategoryText> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Carregando Categorias");
+                return Center(
+                  child: LinearProgressIndicator(
+                    color: Colors.green,
+                  ),
+                );
               }
 
               return Container(
@@ -75,6 +80,7 @@ class _CategoryTextState extends State<CategoryText> {
               );
             },
           ),
+          if (_selectedCategory == null) MainProductsWidget(),
           if (_selectedCategory != null) HomeProductWidget(categoryName: _selectedCategory!),
         ],
       ),
