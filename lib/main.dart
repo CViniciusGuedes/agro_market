@@ -2,6 +2,7 @@ import 'package:agro_market/provider/product_provider.dart';
 import 'package:agro_market/vendor/views/auth/vendor_auth.dart';
 import 'package:agro_market/vendor/views/screens/main_vendor_screen.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
+import 'package:agro_market/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -28,13 +29,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AgroMarket',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 119, 118, 119)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 119, 118, 119)),
         useMaterial3: true,
       ),
-      //home: MainVendorScreen(),
+      home: MainScreen(),
       //home: LoginScreen(),
-      home: VendorAuthScreen(),
+      //home: VendorAuthScreen(),
       builder: EasyLoading.init(),
     );
   }
