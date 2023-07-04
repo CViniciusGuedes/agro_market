@@ -1,3 +1,4 @@
+import 'package:agro_market/provider/cart_provider.dart';
 import 'package:agro_market/provider/product_provider.dart';
 import 'package:agro_market/vendor/views/auth/vendor_auth.dart';
 import 'package:agro_market/vendor/views/screens/main_vendor_screen.dart';
@@ -14,7 +15,10 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) {
       return ProductProvider();
-    })
+    }),
+    ChangeNotifierProvider(create: (_) {
+      return CartProvider();
+    }),
   ], child: const MyApp()));
 }
 

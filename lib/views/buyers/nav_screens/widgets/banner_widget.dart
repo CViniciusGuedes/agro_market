@@ -13,10 +13,7 @@ class _BannerWidgetState extends State<BannerWidget> {
   final List _bannerImage = [];
 
   getBanners() {
-    return _firestore
-        .collection('banners')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
+    return _firestore.collection('banners').get().then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         setState(() {
           _bannerImage.add(doc['image']);
@@ -52,8 +49,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Shimmer(
                       duration: Duration(seconds: 3), //Default value
-                      interval: Duration(
-                          seconds: 5), //Default value: Duration(seconds: 0)
+                      interval: Duration(seconds: 5), //Default value: Duration(seconds: 0)
                       color: Colors.white, //Default value
                       colorOpacity: 0, //Default value
                       enabled: true, //Default value

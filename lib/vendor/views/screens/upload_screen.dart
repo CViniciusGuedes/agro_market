@@ -4,6 +4,7 @@ import 'package:agro_market/vendor/views/screens/upload_tab_screens/general_scre
 import 'package:agro_market/vendor/views/screens/upload_tab_screens/images_screen.dart';
 import 'package:agro_market/vendor/views/screens/upload_tab_screens/shipping_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -68,6 +69,7 @@ class UploadScreen extends StatelessWidget {
                     'imageUrlList': _productProvider.productData['imageUrlList'],
                     'chargeShipping': _productProvider.productData['chargeShipping'],
                     'shippingCharge': _productProvider.productData['shippingCharge'],
+                    'vendorId': FirebaseAuth.instance.currentUser!.uid,
                   }).whenComplete(() {
                     _productProvider.clearData();
                     _formKey.currentState!.reset();
