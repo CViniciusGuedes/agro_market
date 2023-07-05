@@ -1,5 +1,6 @@
 import 'package:agro_market/controllers/auth_controller.dart';
 import 'package:agro_market/utils/show_snackBar.dart';
+import 'package:agro_market/views/buyers/auth/register_screen.dart';
 import 'package:agro_market/views/buyers/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -129,7 +130,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text('Não Tem Uma Conta?'),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return BuyerRegisterScreen();
+                        },
+                      ));
+                    },
                     child: Text('Registrar'),
                   ),
                 ],

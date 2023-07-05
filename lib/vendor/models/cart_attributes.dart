@@ -4,7 +4,8 @@ class CartAttr with ChangeNotifier {
   final String productName;
   final String productId;
   final List imageUrlList;
-  final int quantity;
+  int quantity;
+  int productQuantity;
   final double productPrice;
   final String vendorId;
 
@@ -13,6 +14,15 @@ class CartAttr with ChangeNotifier {
       required this.productId,
       required this.imageUrlList,
       required this.quantity,
+      required this.productQuantity,
       required this.productPrice,
       required this.vendorId});
+
+  void increase() {
+    quantity++;
+  }
+
+  void decrease() {
+    quantity--;
+  }
 }

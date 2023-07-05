@@ -120,9 +120,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               widget.productData['productName'],
               widget.productData['productId'],
               widget.productData['imageUrlList'],
+              1,
               widget.productData['quantity'],
               widget.productData['productPrice'],
               widget.productData['vendorId'],
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('O Produto foi Adicionado ao Carrinho'),
+              ),
             );
           },
           child: Container(

@@ -1,9 +1,11 @@
+import 'package:agro_market/views/buyers/auth/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({super.key});
+  //const AccountScreen({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,7 @@ class AccountScreen extends StatelessWidget {
 
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(FirebaseAuth.instance.currentUser!.uid).get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text("Something went wrong");
         }
@@ -22,8 +23,7 @@ class AccountScreen extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data =
-              snapshot.data!.data() as Map<String, dynamic>;
+          Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
           return Scaffold(
             appBar: AppBar(
               elevation: 2,
@@ -88,12 +88,28 @@ class AccountScreen extends StatelessWidget {
                   leading: Icon(Icons.shopping_cart),
                   title: Text('Carrinho'),
                 ),
+                ListTile(
+                  onTap: () async {
+                    await _auth.signOut().whenComplete(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LoginScreen();
+                          },
+                        ),
+                      );
+                    });
+                  },
+                  leading: Icon(Icons.logout),
+                  title: Text('Logout'),
+                ),
               ],
             ),
           );
         }
 
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       },
     );
   }

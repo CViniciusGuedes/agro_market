@@ -1,4 +1,5 @@
 import 'package:agro_market/provider/cart_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,13 +15,20 @@ class CartScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Carrinho De Compras',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              _cartProvider.removeAllItem();
+            },
+            icon: Icon(CupertinoIcons.delete_solid),
+          ),
+        ],
       ),
       body: ListView.builder(
           shrinkWrap: true,
-          //scrollDirection: Axis.horizontal,
           itemCount: _cartProvider.getCartItem.length,
           itemBuilder: (context, index) {
             final cartData = _cartProvider.getCartItem.values.toList()[index];
@@ -46,6 +54,57 @@ class CartScreen extends StatelessWidget {
                           Text(
                             'R\$ ' + cartData.productPrice.toStringAsFixed(2),
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 125,
+                                decoration: BoxDecoration(
+                                  color: Colors.green.shade700,
+                                ),
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: cartData.quantity == 1
+                                          ? null
+                                          : () {
+                                              _cartProvider.decrement(cartData);
+                                            },
+                                      icon: Icon(
+                                        CupertinoIcons.minus,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      cartData.quantity.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    IconButton(
+                                        onPressed: cartData.productQuantity == cartData.quantity
+                                            ? null
+                                            : () {
+                                                _cartProvider.inscreament(cartData);
+                                              },
+                                        icon: Icon(
+                                          CupertinoIcons.plus,
+                                          color: Colors.white,
+                                        ))
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  _cartProvider.removeItem(cartData.productId);
+                                },
+                                icon: Icon(
+                                  CupertinoIcons.delete,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -87,6 +146,22 @@ class CartScreen extends StatelessWidget {
       //     ],
       //   ),
       // ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+              child: Text(
+            'R\$ ' + _cartProvider.totalPrice.toStringAsFixed(2) + ' - ' + 'Checkout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
+          )),
+        ),
+      ),
     );
   }
 }
