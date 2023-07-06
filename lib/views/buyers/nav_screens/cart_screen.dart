@@ -1,4 +1,5 @@
 import 'package:agro_market/provider/cart_provider.dart';
+import 'package:agro_market/views/buyers/inner_screens/checkout_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class CartScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           'Carrinho De Compras',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         actions: [
@@ -148,18 +149,32 @@ class CartScreen extends StatelessWidget {
       // ),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Container(
-          height: 50,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(10),
+        child: InkWell(
+          onTap: _cartProvider.totalPrice == 0.00
+              ? null
+              : () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return CheckOutScreen();
+                      },
+                    ),
+                  );
+                },
+          child: Container(
+            height: 50,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: _cartProvider.totalPrice == 0.00 ? Colors.grey : Colors.green,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+                child: Text(
+              'R\$ ' + _cartProvider.totalPrice.toStringAsFixed(2) + ' - ' + 'Checkout',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
+            )),
           ),
-          child: Center(
-              child: Text(
-            'R\$ ' + _cartProvider.totalPrice.toStringAsFixed(2) + ' - ' + 'Checkout',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
-          )),
         ),
       ),
     );

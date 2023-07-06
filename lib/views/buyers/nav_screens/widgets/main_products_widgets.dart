@@ -22,9 +22,11 @@ class MainProductsWidget extends StatelessWidget {
         }
 
         return Container(
-          height: 270,
-          child: ListView.separated(
-              scrollDirection: Axis.horizontal,
+          height: 380,
+          child: GridView.builder(
+              itemCount: snapshot.data!.size,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8, childAspectRatio: 200 / 300),
               itemBuilder: (context, index) {
                 final productData = snapshot.data!.docs[index];
                 return GestureDetector(
@@ -71,11 +73,7 @@ class MainProductsWidget extends StatelessWidget {
                     ),
                   ),
                 );
-              },
-              separatorBuilder: (context, _) => SizedBox(
-                    width: 15,
-                  ),
-              itemCount: snapshot.data!.docs.length),
+              }),
         );
       },
     );

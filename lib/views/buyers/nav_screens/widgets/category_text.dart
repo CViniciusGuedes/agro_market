@@ -1,3 +1,4 @@
+import 'package:agro_market/views/buyers/nav_screens/category_screen.dart';
 import 'package:agro_market/views/buyers/nav_screens/widgets/home_products.dart';
 import 'package:agro_market/views/buyers/nav_screens/widgets/main_products_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -74,7 +75,13 @@ class _CategoryTextState extends State<CategoryText> {
                             );
                           }),
                     ),
-                    /*IconButton(onPressed: () {}, icon: Icon(Icons.arrow_right))*/
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return CategoryScreen();
+                          }));
+                        },
+                        icon: Icon(Icons.arrow_forward_ios))
                   ],
                 ),
               );
