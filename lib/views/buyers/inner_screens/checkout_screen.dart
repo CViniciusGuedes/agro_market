@@ -1,4 +1,5 @@
 import 'package:agro_market/provider/cart_provider.dart';
+import 'package:agro_market/views/buyers/inner_screens/edit_profile.dart';
 import 'package:agro_market/views/buyers/main_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,63 +87,80 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     ),
                   );
                 }),
-            bottomSheet: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: InkWell(
-                onTap: () {
-                  EasyLoading.show(status: 'Fazendo Pedido');
-                  _cartProvider.getCartItem.forEach((key, item) {
-                    final orderId = Uuid().v4();
-                    _firestore.collection('orders').doc(orderId).set({
-                      'orderId': orderId,
-                      'vendorId': item.vendorId,
-                      'email': data['email'],
-                      'phone': data['phoneNumber'],
-                      'address': data['address'],
-                      'buyerId': data['buyerId'],
-                      'fullName': data['fullName'],
-                      'buyerPhoto': data['profileImage'],
-                      'productName': item.productName,
-                      'productPrice': item.productPrice,
-                      'productId': item.productId,
-                      'productImage': item.imageUrlList,
-                      'quantity': item.productQuantity,
-                      'soldQuantity': item.quantity,
-                      'orderDate': DateTime.now(),
-                    }).whenComplete(() {
-                      setState(() {
-                        _cartProvider.getCartItem.clear();
-                      });
-
-                      EasyLoading.dismiss();
-
-                      Navigator.pushReplacement(
+            bottomSheet: data['address'] == ''
+                ? TextButton(
+                    onPressed: () {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return MainScreen();
+                            return EditProfileScreen(
+                              userData: data,
+                            );
                           },
                         ),
-                      );
-                    });
-                  });
-                },
-                child: Container(
-                  height: 50,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Finalizar Compra',
-                      style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                      ).whenComplete(() {
+                        Navigator.pop(context);
+                      });
+                    },
+                    child: Text('Insira Um Endereço'))
+                : Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: InkWell(
+                      onTap: () {
+                        EasyLoading.show(status: 'Fazendo Pedido');
+                        _cartProvider.getCartItem.forEach((key, item) {
+                          final orderId = Uuid().v4();
+                          _firestore.collection('orders').doc(orderId).set({
+                            'orderId': orderId,
+                            'vendorId': item.vendorId,
+                            'email': data['email'],
+                            'phone': data['phoneNumber'],
+                            'address': data['address'],
+                            'buyerId': data['buyerId'],
+                            'fullName': data['fullName'],
+                            'buyerPhoto': data['profileImage'],
+                            'productName': item.productName,
+                            'productPrice': item.productPrice,
+                            'productId': item.productId,
+                            'productImage': item.imageUrlList,
+                            'quantity': item.productQuantity,
+                            'soldQuantity': item.quantity,
+                            'orderDate': DateTime.now(),
+                          }).whenComplete(() {
+                            setState(() {
+                              _cartProvider.getCartItem.clear();
+                            });
+
+                            EasyLoading.dismiss();
+
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MainScreen();
+                                },
+                              ),
+                            );
+                          });
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Finalizar Compra',
+                            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
           );
         }
 

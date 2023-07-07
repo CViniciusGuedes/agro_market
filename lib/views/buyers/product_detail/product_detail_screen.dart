@@ -146,7 +146,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
                     CupertinoIcons.cart,
-                    color: Colors.black,
+                    color: Colors.white,
                     size: 25,
                   ),
                 ),
@@ -154,7 +154,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Adicionar ao Carrinho',
-                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],

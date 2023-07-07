@@ -1,4 +1,6 @@
+import 'package:agro_market/vendor/views/screens/edit_product_screen.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
+import 'package:agro_market/views/buyers/inner_screens/edit_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -69,6 +71,37 @@ class AccountScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width - 200,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return EditProfileScreen(
+                              userData: data,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: Center(
+                      child: Text(
+                        'Editar Perfil',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Divider(
@@ -78,7 +111,7 @@ class AccountScreen extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.settings),
-                  title: Text('Configurações da Conta'),
+                  title: Text('Configurações'),
                 ),
                 ListTile(
                   leading: Icon(Icons.phone),
