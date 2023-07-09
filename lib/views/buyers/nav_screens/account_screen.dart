@@ -1,8 +1,10 @@
 import 'package:agro_market/vendor/views/screens/edit_product_screen.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
 import 'package:agro_market/views/buyers/inner_screens/edit_profile.dart';
+import 'package:agro_market/views/buyers/inner_screens/order_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -120,6 +122,20 @@ class AccountScreen extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.shopping_cart),
                   title: Text('Carrinho'),
+                ),
+                ListTile(
+                  onTap: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CustomerOrderScreen();
+                        },
+                      ),
+                    );
+                  },
+                  leading: Icon(CupertinoIcons.money_dollar),
+                  title: Text('Compras'),
                 ),
                 ListTile(
                   onTap: () async {

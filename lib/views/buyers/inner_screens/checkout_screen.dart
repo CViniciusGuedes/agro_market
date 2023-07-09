@@ -127,6 +127,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             'quantity': item.productQuantity,
                             'soldQuantity': item.quantity,
                             'orderDate': DateTime.now(),
+                            'accepted': false,
                           }).whenComplete(() {
                             setState(() {
                               _cartProvider.getCartItem.clear();

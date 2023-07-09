@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: MainScreen(),
-      //home: LoginScreen(),
+      home: LoginScreen(), //Login do comprador
       //home: RegisterScreen(),
-      home: VendorAuthScreen(),
+      //home: VendorAuthScreen(), //Login do vendedor
       //home: BuyerRegisterScreen(),
       builder: EasyLoading.init(),
     );
