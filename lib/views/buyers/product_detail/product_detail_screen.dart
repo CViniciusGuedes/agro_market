@@ -23,7 +23,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         backgroundColor: Colors.green,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          //'Produto',
           widget.productData['productName'],
           style: TextStyle(color: Colors.white),
         ),

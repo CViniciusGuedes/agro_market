@@ -1,3 +1,4 @@
+import 'package:agro_market/views/buyers/product_detail/store_detail_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -29,11 +30,25 @@ class StoreScreen extends StatelessWidget {
               itemCount: snapshot.data!.size,
               itemBuilder: (context, index) {
                 final storeData = snapshot.data!.docs[index];
-                return ListTile(
-                  title: Text(storeData['businessName']),
-                  subtitle: Text(storeData['countryValue']),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(storeData['storeImage']),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return StoreDetailScreen(
+                            storeData: storeData,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(storeData['businessName']),
+                    subtitle: Text(storeData['countryValue']),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(storeData['storeImage']),
+                    ),
                   ),
                 );
               }),

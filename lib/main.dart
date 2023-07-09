@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AgroMarket',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 119, 118, 119)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 2, 163, 69)),
         useMaterial3: true,
       ),
       home: MainScreen(),
