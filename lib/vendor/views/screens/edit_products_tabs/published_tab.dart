@@ -20,11 +20,24 @@ class PublishedTab extends StatelessWidget {
         stream: _vendorProductStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return Text('Algo Deu Errado');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.green,
+              ),
+            );
+          }
+
+          if (snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text(
+                'Não Há Produtos Publicados',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
           }
 
           return Container(

@@ -23,7 +23,20 @@ class UnpublishedTab extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.green,
+              ),
+            );
+          }
+
+          if (snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Text(
+                'Não Há Produtos Não Publicados',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
           }
 
           return Container(

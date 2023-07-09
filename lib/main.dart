@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 119, 118, 119)),
         useMaterial3: true,
       ),
-      //home: MainScreen(),
-      home: LoginScreen(), //Login do comprador
+      home: MainScreen(),
+      //home: LoginScreen(), //Login do comprador
       //home: RegisterScreen(),
       //home: VendorAuthScreen(), //Login do vendedor
       //home: BuyerRegisterScreen(),

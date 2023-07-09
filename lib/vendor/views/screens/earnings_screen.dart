@@ -1,3 +1,4 @@
+import 'package:agro_market/vendor/views/screens/vendor_inner_screen/cancel_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -138,6 +139,31 @@ class EarningScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                        /*InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return CancelScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width - 40,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Cancelamentos',
+                                  style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                              )),
+                        ),*/
                       ],
                     ),
                   ),

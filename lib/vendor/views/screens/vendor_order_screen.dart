@@ -59,14 +59,14 @@ class VendorOrderScreen extends StatelessWidget {
                       ),
                       title: document['accepted'] == true
                           ? Text(
-                              'Aceito',
+                              'Entrega Concluída',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.blue,
                               ),
                             )
                           : Text(
-                              'Não Aceito',
+                              'Entrega Pendente',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.red,
@@ -154,7 +154,7 @@ class VendorOrderScreen extends StatelessWidget {
                       foregroundColor: Colors.white,
                       //icon: Icons.block,
                       icon: Icons.thumb_down,
-                      label: 'Rejeitar',
+                      label: 'Pendente',
                     ),
                     SlidableAction(
                       onPressed: (context) async {
@@ -165,7 +165,7 @@ class VendorOrderScreen extends StatelessWidget {
                       backgroundColor: Color(0xFF21B7CA),
                       foregroundColor: Colors.white,
                       icon: Icons.thumb_up,
-                      label: 'Aceitar',
+                      label: 'Entregue',
                     ),
                   ],
                 ),
