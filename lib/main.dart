@@ -1,10 +1,12 @@
 import 'package:agro_market/provider/cart_provider.dart';
 import 'package:agro_market/provider/product_provider.dart';
 import 'package:agro_market/vendor/views/auth/vendor_auth.dart';
+import 'package:agro_market/vendor/views/screens/landing_screen.dart';
 import 'package:agro_market/vendor/views/screens/main_vendor_screen.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
 import 'package:agro_market/views/buyers/auth/register_screen.dart';
 import 'package:agro_market/views/buyers/main_screen.dart';
+import 'package:agro_market/views/buyers/nav_screens/open_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +40,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 2, 163, 69)),
         useMaterial3: true,
       ),
-      home: MainScreen(),
+      //home: MainScreen(), //Tela principal do Comprador
       //home: LoginScreen(), //Login do comprador
       //home: RegisterScreen(),
       //home: VendorAuthScreen(), //Login do vendedor
       //home: BuyerRegisterScreen(),
+      //home: MainVendorScreen(),Tela principal do Vendedor
+      home: OpenScreen(),
       builder: EasyLoading.init(),
     );
   }

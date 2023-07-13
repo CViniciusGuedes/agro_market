@@ -2,6 +2,7 @@ import 'package:agro_market/vendor/views/screens/edit_product_screen.dart';
 import 'package:agro_market/views/buyers/auth/login_screen.dart';
 import 'package:agro_market/views/buyers/inner_screens/edit_profile.dart';
 import 'package:agro_market/views/buyers/inner_screens/order_screen.dart';
+import 'package:agro_market/views/buyers/nav_screens/open_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -219,7 +220,8 @@ class AccountScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return LoginScreen();
+                                  //return LoginScreen();
+                                  return OpenScreen();
                                 },
                               ),
                             );
