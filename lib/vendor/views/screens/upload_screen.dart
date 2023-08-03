@@ -1,11 +1,12 @@
-import 'package:agro_market/provider/product_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:agro_market/vendor/views/screens/main_vendor_screen.dart';
 import 'package:agro_market/vendor/views/screens/upload_tab_screens/general_screen.dart';
 import 'package:agro_market/vendor/views/screens/upload_tab_screens/images_screen.dart';
 import 'package:agro_market/vendor/views/screens/upload_tab_screens/shipping_screen.dart';
+
+import 'package:agro_market/provider/product_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -18,6 +19,7 @@ class UploadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductProvider _productProvider = Provider.of<ProductProvider>(context);
+
     return DefaultTabController(
       length: 3,
       child: Form(

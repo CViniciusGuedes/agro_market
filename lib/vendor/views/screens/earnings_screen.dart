@@ -139,31 +139,6 @@ class EarningScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        /*InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return CancelScreen();
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                              height: 40,
-                              width: MediaQuery.of(context).size.width - 40,
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Cancelamentos',
-                                  style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-                                ),
-                              )),
-                        ),*/
                       ],
                     ),
                   ),

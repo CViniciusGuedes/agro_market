@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:agro_market/provider/product_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class GeneralScreen extends StatefulWidget {

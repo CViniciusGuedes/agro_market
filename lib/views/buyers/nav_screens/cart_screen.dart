@@ -89,7 +89,7 @@ class CartScreen extends StatelessWidget {
                                             onPressed: cartData.productQuantity == cartData.quantity
                                                 ? null
                                                 : () {
-                                                    _cartProvider.inscreament(cartData);
+                                                    _cartProvider.increament(cartData);
                                                   },
                                             icon: Icon(
                                               CupertinoIcons.plus,

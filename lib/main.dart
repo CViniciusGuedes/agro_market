@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       //home: RegisterScreen(),
       //home: VendorAuthScreen(), //Login do vendedor
       //home: BuyerRegisterScreen(),
-      //home: MainVendorScreen(),Tela principal do Vendedor
+      //home: MainVendorScreen(), //Tela principal do Vendedor
       home: OpenScreen(),
       builder: EasyLoading.init(),
     );

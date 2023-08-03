@@ -56,7 +56,7 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  void inscreament(CartAttr cartAttr) {
+  void increament(CartAttr cartAttr) {
     cartAttr.increase();
     notifyListeners();
   }

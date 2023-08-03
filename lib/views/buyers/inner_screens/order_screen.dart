@@ -54,14 +54,14 @@ class CustomerOrderScreen extends StatelessWidget {
                     ),
                     title: document['accepted'] == true
                         ? Text(
-                            'Aceito',
+                            'Entregue',
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.blue,
                             ),
                           )
                         : Text(
-                            'Não Aceito',
+                            'Entrega Pendente',
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.red,
