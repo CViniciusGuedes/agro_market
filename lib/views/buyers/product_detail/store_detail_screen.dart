@@ -9,8 +9,11 @@ class StoreDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _productStream =
-        FirebaseFirestore.instance.collection('products').where('vendorId', isEqualTo: storeData['vendorId']).snapshots();
+    final Stream<QuerySnapshot> _productStream = FirebaseFirestore.instance
+        .collection('products')
+        .where('vendorId', isEqualTo: storeData['vendorId'])
+        .where('approved', isEqualTo: true)
+        .snapshots();
     return Scaffold(
       appBar: AppBar(
         title: Text(

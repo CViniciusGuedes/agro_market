@@ -50,6 +50,8 @@ class AuthController {
           'buyerId': cred.user!.uid,
           'address': '',
           'profileImage': profileImageUrl,
+          'cep': '',
+          'city': '',
         });
 
         res = 'success';

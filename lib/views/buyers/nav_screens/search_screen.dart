@@ -12,7 +12,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance.collection('products').snapshots();
+    final Stream<QuerySnapshot> _productsStream = FirebaseFirestore.instance.collection('products').where('approved', isEqualTo: true).snapshots();
 
     return Scaffold(
       appBar: AppBar(

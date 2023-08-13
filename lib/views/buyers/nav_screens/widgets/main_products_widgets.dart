@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class MainProductsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _productStream = FirebaseFirestore.instance.collection('products').snapshots();
+    final Stream<QuerySnapshot> _productStream = FirebaseFirestore.instance.collection('products').where('approved', isEqualTo: true).snapshots();
     return StreamBuilder<QuerySnapshot>(
       stream: _productStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

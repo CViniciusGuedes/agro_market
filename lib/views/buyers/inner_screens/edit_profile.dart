@@ -21,6 +21,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _cepController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //String? address;
@@ -35,6 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _phoneController.text = widget.userData['phoneNumber'];
       _addressController.text = widget.userData['address'];
       _cepController.text = widget.userData['cep'];
+      _cityController.text = widget.userData['city'];
     });
     super.initState();
   }
@@ -64,18 +66,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   Stack(
                     children: [
-                      CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.grey,
-                      ),
-                      Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(CupertinoIcons.photo),
+                      Center(
+                        child: CircleAvatar(
+                          radius: 64,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: NetworkImage(widget.userData['profileImage']),
                         ),
                       ),
                     ],
@@ -144,18 +139,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         return null; // CEP válido, retorna null para indicar que não há erro.
                       },
                     ),
-                  )
-                  /*Padding(
+                  ),
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      onChanged: (value) {
-                        address = value;
-                      },
+                      controller: _cityController,
                       decoration: InputDecoration(
-                        labelText: 'Insira Seu Endereço',
+                        labelText: 'Insira Sua Cidade',
                       ),
                     ),
-                  ),*/
+                  ),
                 ],
               ),
             ),
@@ -174,6 +167,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 'phoneNumber': _phoneController.text,
                 'address': _addressController.text,
                 'cep': _cepController.text,
+                'city': _cityController.text,
               }).whenComplete(() {
                 EasyLoading.dismiss();
                 Navigator.pop(context);
